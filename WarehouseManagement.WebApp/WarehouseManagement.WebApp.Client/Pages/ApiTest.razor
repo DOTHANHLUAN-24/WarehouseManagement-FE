@@ -1,0 +1,26 @@
+﻿@page "/apitest"
+@rendermode InteractiveWebAssembly
+@inject HttpClient Http
+
+<h3>API Test</h3>
+
+<p>@result</p>
+
+<button @onclick="CallApi">Call API</button>
+
+@code {
+    string result = "Not called yet";
+
+    async Task CallApi()
+    {
+        try
+        {
+            var products = await Http.GetStringAsync("api/test/allProduct");
+            result = products;
+        }
+        catch (Exception ex)
+        {
+            result = ex.Message;
+        }
+    }
+}

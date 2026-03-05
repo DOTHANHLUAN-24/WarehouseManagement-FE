@@ -12,4 +12,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.19" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Layout\" />
+    <Folder Include="Components\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

@@ -1,11 +1,23 @@
-using WarehouseManagement.WebApp.Client.Pages;
 using WarehouseManagement.WebApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var backendApiBaseUrl = builder.Configuration["BackendApiBaseUrl"] ?? "https://localhost:7161/";
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddHttpClient("Api", client =>
+{
+    client.BaseAddress = new Uri(backendApiBaseUrl);
+});
+
+builder.Services.AddScoped(sp =>
+{
+    var factory = sp.GetRequiredService<IHttpClientFactory>();
+    return factory.CreateClient("Api");
+});
 
 var app = builder.Build();
 
