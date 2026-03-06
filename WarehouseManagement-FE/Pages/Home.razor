@@ -1,7 +1,26 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+@using WarehouseManagement.Shared.Models.Product
+@inject HttpClient Http
 
-<h1>Hello, world!</h1>
+@if (listProduct == null || listProduct.Count == 0)
+{
+    <p>Not found any product.</p>
+}
+else
+{
+    @foreach (var product in listProduct)
+    {
+        <p>@product.Name</p>
+    }
+}
 
-Welcome to your new app.
+@code {
+    List<ProductViewModel>? listProduct;
+
+    protected override async Task OnInitializedAsync()
+    {
+        listProduct = await Http.GetFromJsonAsync<List<ProductViewModel>>(
+            "api/Test/allProduct");
+    }
+}
