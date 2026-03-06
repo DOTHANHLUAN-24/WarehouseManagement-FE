@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Models\Category\" />
     <Folder Include="Models\Role\" />
     <Folder Include="Models\User\" />
-    <Folder Include="Models\Product\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
