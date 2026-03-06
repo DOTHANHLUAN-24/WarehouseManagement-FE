@@ -1,7 +1,58 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+@using WarehouseManagement.Shared.Models.Product
+@using MudBlazor
+@inject HttpClient Http
+@inject ISnackbar Snackbar
 
-<h1>Hello, world!</h1>
+<MudButton Variant="Variant.Filled"
+           Color="Color.Primary"
+           OnClick="LoadProducts">
+    Load Products
+</MudButton>
 
-Welcome to your new app.
+<MudDivider Class="my-4" />
+
+@if (listProduct == null)
+{
+    <p>Click button to load products.</p>
+}
+else if (listProduct.Count == 0)
+{
+    <p>Not found any product.</p>
+}
+else
+{
+    <MudList T="ProductViewModel">
+        @foreach (var product in listProduct)
+        {
+            <MudListItem>@product.Name</MudListItem>
+        }
+    </MudList>
+}
+
+@code {
+    List<ProductViewModel>? listProduct;
+
+    private async Task LoadProducts()
+    {
+        try
+        {
+            listProduct = await Http.GetFromJsonAsync<List<ProductViewModel>>(
+                "api/Test/allProduct");
+
+            if (listProduct == null || listProduct.Count == 0)
+            {
+                Snackbar.Add("No products found.", Severity.Warning);
+            }
+            else
+            {
+                Snackbar.Add("Products loaded successfully.", Severity.Success);
+            }
+        }
+        catch
+        {
+            Snackbar.Add("Error loading products.", Severity.Error);
+        }
+    }
+}

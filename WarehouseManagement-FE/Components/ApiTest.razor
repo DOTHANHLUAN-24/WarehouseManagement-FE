@@ -1,0 +1,17 @@
+﻿@page "/api-test"
+@inject HttpClient Http
+
+<h3>Test API</h3>
+
+<p>@message</p>
+
+<button @onclick="CallApi">Call API</button>
+
+@code {
+    string message = "No connection into backend!";
+
+    async Task CallApi()
+    {
+        message = await Http.GetStringAsync("api/test");
+    }
+}
