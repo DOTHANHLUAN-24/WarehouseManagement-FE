@@ -1,34 +1,32 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Warehouse Management</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿<MudNavMenu>
+    <MudStack Row AlignItems="AlignItems.Center" Class="pa-4">
+        <MudIcon Icon="@Icons.Material.Filled.Warehouse" Size="Size.Large" />
+        <MudText Typo="Typo.h6">
+            Warehouse
+        </MudText>
+    </MudStack>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="api-test">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Test API
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    <MudNavLink Href="/" Icon="@Icons.Material.Filled.Dashboard">
+        Dashboard
+    </MudNavLink>
 
-@code {
-    private bool collapseNavMenu = true;
+    <MudNavLink Href="/products" Icon="@Icons.Material.Filled.Inventory">
+        Inventory
+    </MudNavLink>
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    <MudNavLink Href="/orders" Icon="@Icons.Material.Filled.Receipt">
+        Orders
+    </MudNavLink>
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+    <MudNavLink Href="/suppliers" Icon="@Icons.Material.Filled.LocalShipping">
+        Suppliers
+    </MudNavLink>
+
+    <MudNavLink Href="/reports" Icon="@Icons.Material.Filled.BarChart">
+        Reports
+    </MudNavLink>
+
+    <MudNavLink Href="/api-test" Icon="@Icons.Material.Filled.Cached">
+        Test connection API
+    </MudNavLink>
+</MudNavMenu>
