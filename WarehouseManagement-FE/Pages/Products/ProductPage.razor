@@ -1,0 +1,176 @@
+﻿@page "/products"
+
+@inject HttpClient Http
+
+@using System.Net.Http.Json
+@using WarehouseManagement.Shared.Models.Product
+@using WarehouseManagement_FE.Components.Common
+
+<MudContainer MaxWidth="MaxWidth.False" Class="pa-4">
+
+	<MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center" Class="mb-4">
+
+		<SearchBar SearchText="@searchText"
+				   SearchTextChanged="OnSearchChanged"
+				   Placeholder="Search product..." />
+
+		<MudButton Variant="Variant.Filled"
+				   Color="Color.Primary"
+				   StartIcon="@Icons.Material.Filled.Add">
+			Add Product
+		</MudButton>
+
+		<MudButton Variant="Variant.Filled"
+				   Color="Color.Secondary"
+				   OnClick="OnModeChanged">
+			@(isProductMode ? "Product mode" : "Variants mode")
+		</MudButton>
+
+	</MudStack>
+
+	@if (filteredProducts.Count == 0)
+	{
+		<p>Hiện tại đang không có sản phẩm nào</p>
+	}
+	else
+	{
+		<MudTable T="ProductViewModel"
+				  Items="filteredProducts"
+				  Hover="true"
+				  Striped="true"
+				  RowsPerPage="10"
+				  Elevation="1">
+
+			<HeaderContent>
+				<MudTh>Image</MudTh>
+				<MudTh>Name</MudTh>
+				<MudTh>Variant</MudTh>
+				@* <MudTh>SKU</MudTh> *@
+				<MudTh>Price</MudTh>
+				@* <MudTh>Stock</MudTh> *@
+				<MudTh>Action</MudTh>
+			</HeaderContent>
+
+			<RowTemplate>
+
+				<MudTd>
+					<MudAvatar Size="Size.Medium">
+						@* <MudImage Src="@context.ImageUrl" /> *@
+						<MudImage Src="https://images.unsplash.com/photo-1772752021241-2d922cadbab1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+					</MudAvatar>
+				</MudTd>
+
+				<MudTd DataLabel="Name">
+					@context.Name
+				</MudTd>
+
+				<MudTd DataLabel="Variant">@context.</MudTd>
+
+				@* <MudTd DataLabel="SKU">
+                @context.Sku
+            </MudTd> *@
+
+				<MudTd DataLabel="Price">
+					@context.Price
+				</MudTd>
+
+				@* <MudTd DataLabel="Stock">
+
+                @if (context.StockQuantity < 5)
+                {
+                    <MudChip Color="Color.Error" Size="Size.Small">
+                        Low Stock (@context.StockQuantity)
+                    </MudChip>
+                }
+                else
+                {
+                    <MudChip Color="Color.Success" Size="Size.Small">
+                        @context.StockQuantity
+                    </MudChip>
+                }
+
+            </MudTd> *@
+
+				<MudTd>
+
+					<MudIconButton Icon="@Icons.Material.Filled.Edit"
+								   Color="Color.Primary" />
+
+					@* <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                               Color="Color.Error"
+                               OnClick="(() => DeleteProduct(context.Id))" /> *@
+
+				</MudTd>
+
+			</RowTemplate>
+
+		</MudTable>
+	}
+
+</MudContainer>
+
+
+@code {
+
+	string searchText = "";
+
+	List<ProductViewModel> products = new();
+	List<ProductViewModel> filteredProducts = new();
+
+	bool isProductMode = true;
+
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		products = await Http.GetFromJsonAsync<List<ProductViewModel>>("api/Products/all")
+							?? new List<ProductViewModel>();
+
+		filteredProducts = products;
+
+	}
+
+
+	void OnSearchChanged(string value)
+	{
+
+		searchText = value;
+
+		if (!isProductMode)
+
+			ProductVariantsMode(searchText);
+		else
+			ProductMode(searchText);
+	}
+
+	void OnModeChanged()
+	{
+		isProductMode = !isProductMode;
+		if (!isProductMode)
+
+			ProductVariantsMode(searchText);
+		else
+			ProductMode(searchText);
+
+	}
+
+	void ProductVariantsMode(string value)
+	{
+		searchText = value;
+
+		filteredProducts = products
+			.Where(p => p.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+			.GroupBy(p => p.Id)
+			.Select(g => g.First())
+			.ToList();
+	}
+
+	void ProductMode(string value)
+	{
+		searchText = value;
+
+		filteredProducts = products
+			.Where(p => p.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+			.ToList();
+	}
+}

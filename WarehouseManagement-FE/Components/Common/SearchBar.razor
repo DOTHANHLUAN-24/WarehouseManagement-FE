@@ -1,0 +1,25 @@
+﻿<MudTextField T="string"
+              Value="@SearchText"
+              ValueChanged="OnValueChanged"
+              Placeholder="@Placeholder"
+              Adornment="Adornment.Start"
+              AdornmentIcon="@Icons.Material.Filled.Search"
+              Immediate="true"
+              Class="w-100" />
+
+@code {
+    [Parameter]
+    public string SearchText { get; set; } = "";
+
+    [Parameter]
+    public EventCallback<string> SearchTextChanged { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; } = "Search...";
+
+    private async Task OnValueChanged(string value)
+    {
+        SearchText = value;
+        await SearchTextChanged.InvokeAsync(value);
+    }
+}
