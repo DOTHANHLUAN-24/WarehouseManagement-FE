@@ -1,0 +1,55 @@
+﻿<MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+
+    <MudSelect T="string"
+               Value="@Category"
+               ValueChanged="OnCategoryChanged"
+               Dense="true"
+               Variant="Variant.Outlined"
+               AdornmentIcon="@Icons.Material.Filled.Search"
+               Style="width:120px">
+
+        <MudSelectItem T="string" Value="@("name")">Name</MudSelectItem>
+        <MudSelectItem T="string" Value="@("id")">Id</MudSelectItem>
+        <MudSelectItem T="string" Value="@("category")">Category</MudSelectItem>
+
+    </MudSelect>
+
+    <MudTextField T="string"
+                  Value="@SearchText"
+                  ValueChanged="OnValueChanged"
+                  Placeholder="@Placeholder"
+                  Immediate="true"
+                  Variant="Variant.Outlined"
+                  Adornment="Adornment.Start"
+                  Style="width:250px" />
+
+</MudStack>
+
+@code {
+    [Parameter]
+    public string SearchText { get; set; } = "";
+
+    [Parameter]
+    public EventCallback<string> SearchTextChanged { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; } = "Search...";
+
+    [Parameter]
+    public string Category { get; set; } = "name";
+
+    [Parameter]
+    public EventCallback<string> CategoryChanged { get; set; }
+
+    private async Task OnValueChanged(string value)
+    {
+        SearchText = value;
+        await SearchTextChanged.InvokeAsync(value);
+    }
+
+    private async Task OnCategoryChanged(string value)
+    {
+        Category = value;
+        await CategoryChanged.InvokeAsync(value);
+    }
+}

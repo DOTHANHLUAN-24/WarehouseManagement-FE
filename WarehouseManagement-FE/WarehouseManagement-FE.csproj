@@ -20,7 +20,6 @@
     <Folder Include="Components\Layout\" />
     <Folder Include="Components\Shared\" />
     <Folder Include="Pages\Warehouses\" />
-    <Folder Include="Pages\Products\" />
     <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
