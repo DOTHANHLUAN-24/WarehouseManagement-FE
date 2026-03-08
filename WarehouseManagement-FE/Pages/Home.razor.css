@@ -1,0 +1,18 @@
+﻿
+.user-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    background: white;
+}
+
+    .icon-box i {
+        font-size: 18px;
+        color: #6c757d;
+    }
