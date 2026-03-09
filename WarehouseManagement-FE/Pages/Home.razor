@@ -1,6 +1,7 @@
 ﻿@page "/"
 
 @using WarehouseManagement.Shared.Models.Product
+@using WarehouseManagement_FE.Components.Dashboard
 
 @inject HttpClient Http
 @inject ISnackbar Snackbar
@@ -50,7 +51,6 @@
 							</MudStack>
 
 							<MudGrid>
-
 								@foreach (var item in topItems.Take(4))
 								{
 									<MudItem xs="12" sm="6" md="3">
@@ -75,20 +75,49 @@
 										</MudCard>
 									</MudItem>
 								}
-
 							</MudGrid>
-
 						</MudPaper>
 					</MudItem>
 
-					<MudItem xs="5" md="3">
-						<MudPaper Class="pa-4">
-							<MudText Typo="Typo.h6">Products</MudText>
-							<MudText Typo="Typo.h4">120</MudText>
-						</MudPaper>
+					<MudItem xs="5">
+						@* <MudPaper Class="pa-2" Elevation="0" Style="background:#f3f4f6;border-radius:12px;width:350px">
+							<MudTabs Rounded="true"
+									 SliderColor="Color.Primary"
+									 Class="segmented-tabs">
+
+								<MudTabPanel Text="Pending Actions">
+									<!-- Content -->
+								</MudTabPanel>
+
+								<MudTabPanel Text="Recent Activities">
+									<!-- Content -->
+								</MudTabPanel>
+
+							</MudTabs>
+						</MudPaper> *@
+						<MudToggleGroup T="string"
+										@bind-Value="selectedTab"
+										Exclusive="true"
+										Class="pa-1"
+										Style="background:#e5e7eb;border-radius:10px;">
+
+							<MudToggleItem Value="@("pending")">Pending Actions</MudToggleItem>
+							<MudToggleItem Value="@("recent")">Recent Activities</MudToggleItem>
+
+						</MudToggleGroup>
+
+
+						@if (selectedTab == "pending")
+						{
+							<PendingActionComponent></PendingActionComponent>
+						}
+						else if (selectedTab == "recent")
+						{
+							<RecentActivityComponent></RecentActivityComponent>
+						}
 					</MudItem>
 
-					<MudItem xs="12" md="3">
+			@* 		<MudItem xs="12" md="3">
 						<MudPaper Class="pa-4">
 							<MudText Typo="Typo.h6">In Stock</MudText>
 							<MudText Typo="Typo.h4">95</MudText>
@@ -106,7 +135,7 @@
 						<MudPaper Class="pa-4">
 							<MudText Typo="Typo.h6">Recent Products</MudText>
 						</MudPaper>
-					</MudItem>
+					</MudItem> *@
 				</MudGrid>
 			</MudTabPanel>
 
@@ -148,6 +177,8 @@
 
 @code {
 	string searchText = "";
+
+	string selectedTab = "pending";
 
 	List<ProductViewModel>? listProduct;
 
