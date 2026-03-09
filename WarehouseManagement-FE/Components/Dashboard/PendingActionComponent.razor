@@ -1,0 +1,86 @@
+﻿<MudPaper Elevation="0" Class="pa-4 border-all">
+    <MudList T="string" Clickable="true">
+
+        @* --- SALES SECTION --- *@
+        <div class="d-flex align-center px-4 py-2">
+            <MudIcon Icon="@Icons.Material.Outlined.ShoppingCart" Color="Color.Warning" Class="mr-3" />
+            <MudText Typo="Typo.subtitle1" Style="font-weight: 700; color: #333;">SALES</MudText>
+        </div>
+        <MudDivider Class="mb-2" />
+
+        <MudListItem Icon="@Icons.Material.Filled.ChevronRight" IconSize="Size.Small">
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">To Be Packed</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: 500;">51.000</MudText>
+            </div>
+        </MudListItem>
+
+        <MudListItem Icon="@Icons.Material.Filled.ChevronRight" IconSize="Size.Small">
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">To Be Shipped</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: 500;">40.000</MudText>
+            </div>
+        </MudListItem>
+
+        <MudListItem Icon="@Icons.Material.Filled.ChevronRight" IconSize="Size.Small">
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">To Be Delivered</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: 500;">52.000</MudText>
+            </div>
+        </MudListItem>
+
+        <MudListItem Icon="@Icons.Material.Filled.ChevronRight" IconSize="Size.Small" Class="mb-4">
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">To Be Invoiced</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: 500;">97.000</MudText>
+            </div>
+        </MudListItem>
+
+        @* --- PURCHASES SECTION --- *@
+        <div class="d-flex align-center px-4 py-2 mt-4">
+            <MudIcon Icon="@Icons.Material.Outlined.ShoppingBag" Color="Color.Warning" Class="mr-3" />
+            <MudText Typo="Typo.subtitle1" Style="font-weight: 700; color: #333;">PURCHASES</MudText>
+        </div>
+        <MudDivider Class="mb-2" />
+
+        <MudListItem Icon="@Icons.Material.Filled.ChevronRight" IconSize="Size.Small">
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">To Be Received</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: 500;">62.00</MudText>
+            </div>
+        </MudListItem>
+
+        <MudListItem Icon="@Icons.Material.Filled.ChevronRight" IconSize="Size.Small" Class="mb-4">
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Receive In Progress</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: 500;">0</MudText>
+            </div>
+        </MudListItem>
+
+        @* --- INVENTORY SECTION --- *@
+        <div class="d-flex align-center px-4 py-2 mt-4">
+            <MudIcon Icon="@Icons.Material.Outlined.LocalShipping" Color="Color.Warning" Class="mr-3" />
+            <MudText Typo="Typo.subtitle1" Style="font-weight: 700; color: #333;">INVENTORY</MudText>
+        </div>
+        <MudDivider Class="mb-2" />
+
+        <MudListItem Icon="@Icons.Material.Filled.ChevronRight" IconSize="Size.Small">
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Below Reorder Level</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: 500;">0</MudText>
+            </div>
+        </MudListItem>
+
+        <MudListItem Icon="@Icons.Material.Filled.ChevronRight" IconSize="Size.Small">
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Unconfirmed Items</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: 500;">0</MudText>
+            </div>
+        </MudListItem>
+
+    </MudList>
+</MudPaper>
+
+@code {
+
+}

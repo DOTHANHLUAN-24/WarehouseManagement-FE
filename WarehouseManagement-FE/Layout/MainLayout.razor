@@ -1,5 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
+@using MudBlazor
+
 <MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -38,9 +40,15 @@
 
 			<MudSpacer />
 
-			<MudIconButton Icon="@Icons.Material.Filled.Settings" />
+			<MudIconButton Icon="@Icons.Material.Filled.Add"
+						   Variant="Variant.Outlined"
+						   Color="Color.Secondary"
+						   Size="Size.Large"
+						   Style="width:48px;height:48px; margin-right: 10px;" />
 
-			<MudIconButton Icon="@Icons.Material.Filled.Notifications" />
+			<MudFab Color="Color.Transparent" StartIcon="@Icons.Material.Filled.Settings" />
+
+			<MudIconButton Icon="@Icons.Material.Filled.Notifications" /> 
 
 			<div class="ml-2"></div>
 

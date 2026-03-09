@@ -1,36 +1,55 @@
 ﻿<MudNavMenu>
     <MudStack Row AlignItems="AlignItems.Center" Class="pa-4">
-        <MudIcon Icon="@Icons.Material.Filled.Warehouse" Size="Size.Large" />
-        <MudText Typo="Typo.h6">
-            Warehouse
+        <MudIcon Icon="@Icons.Material.Filled.Store" Color="Color.Primary" Size="Size.Large" />
+        <MudText Typo="Typo.h6" Style="font-weight:bold">
+            WAREHOUSE MS
         </MudText>
     </MudStack>
 
-    <MudNavLink Href="/" Icon="@Icons.Material.Filled.Home">
-        Home
+    <MudNavLink Href="/" Icon="@Icons.Material.Filled.Dashboard" Match="NavLinkMatch.All">
+        Dashboard
     </MudNavLink>
 
-    <MudNavLink Href="/products" Icon="@Icons.Material.Filled.Inventory">
-        Inventory
-    </MudNavLink>
+    @* --- NHÓM HÀNG HÓA --- *@
+    <MudNavGroup Icon="@Icons.Material.Filled.Widgets" Title="Items" Expanded="false">
+        <MudNavLink Icon="@Icons.Material.Filled.FormatListBulleted" Href="/products">All Items</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.AccountTree" Href="/composite-items">Composite Items</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.Class" Href="/item-groups">Item Groups</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.Sell" Href="/price-lists">Price Lists</MudNavLink>
+    </MudNavGroup>
 
-    <MudNavLink Href="/orders" Icon="@Icons.Material.Filled.Receipt">
-        Orders
-    </MudNavLink>
+    @* --- NHÓM KHO (VẬN HÀNH) --- *@
+    <MudNavGroup Icon="@Icons.Material.Filled.Inventory2" Title="Inventory" Expanded="false">
+        <MudNavLink Icon="@Icons.Material.Filled.Handyman" Href="/assemblies">Assemblies</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.Tune" Href="/adjustments">Adjustments</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.Archive" Href="/packages">Packages</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.LocalShipping" Href="/shipments">Shipments</MudNavLink>
+    </MudNavGroup>
 
-    <MudNavLink Href="/suppliers" Icon="@Icons.Material.Filled.LocalShipping">
-        Suppliers
-    </MudNavLink>
+    @* --- NHÓM BÁN HÀNG --- *@
+    <MudNavGroup Icon="@Icons.Material.Filled.Assignment" Title="Sales" Expanded="false">
+        <MudNavLink Icon="@Icons.Material.Filled.PeopleAlt" Href="/customer">Customers</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.Description" Href="/sales-orders">Sales Orders</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.Receipt" Href="/invoices">Invoices</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.Paid" Href="/payments-received">Payments Received</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.AssignmentReturn" Href="/sales-returns">Sales Returns</MudNavLink>
+    </MudNavGroup>
 
-    <MudNavLink Href="/reports" Icon="@Icons.Material.Filled.BarChart">
-        Reports
-    </MudNavLink>
+    @* --- NHÓM MUA HÀNG --- *@
+    <MudNavGroup Icon="@Icons.Material.Filled.ShoppingCart" Title="Purchases" Expanded="false">
+        <MudNavLink Icon="@Icons.Material.Filled.Storefront" Href="/vendors">Vendors</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.AccountBalanceWallet" Href="/expenses">Expenses</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.ShoppingCartCheckout" Href="/purchase-orders">Purchase Orders</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.Input" Href="/purchase-receives">Purchase Receives</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Filled.RequestPage" Href="/bills">Bills</MudNavLink>
+    </MudNavGroup>
 
-    <MudNavLink Href="/api-test" Icon="@Icons.Material.Filled.Cached">
-        Test connection API
-    </MudNavLink>
+    <MudDivider Class="my-2" />
 
-    <MudNavLink Href="/products" Icon="@Icons.Material.Filled.Comment">
-        Test Product page
-    </MudNavLink>
+    @* --- TIỆN ÍCH --- *@
+    <MudNavLink Href="/reports" Icon="@Icons.Material.Filled.BarChart">Reports</MudNavLink>
+    <MudNavLink Href="/documents" Icon="@Icons.Material.Filled.Folder">Documents</MudNavLink>
+
+    @* --- DEBUG/TEST (Nên để icon mờ hoặc nhỏ hơn) --- *@
+    <MudNavLink Href="/api-test" Icon="@Icons.Material.Filled.Terminal" IconColor="Color.Info">API Debug</MudNavLink>
 </MudNavMenu>
